@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main hbox">
+    <div class="item"></div>
+    <form method="POST" class="hiper-item form vbox">{% csrf_token %}
+
+        <label for="username">Nome de Usuário</label>
+        <input type="text" name="username" class="form-item" required />
+        
+        <label for="first_name">Primeiro Nome</label>
+        <input type="text" name="first_name" class="form-item" required />
+        
+        <label for="last_name">Sobrenome</label>
+        <input type="text" name="last_name" class="form-item" required />
+        
+        <label for="email">Email</label>
+        <input type="email" name="email" class="form-item" required />
+
+        <label for="password">Senha</label>
+        <input type="password" name="password" class="form-item" required />
+        
+        <label for="password2">Repita a senha</label>
+        <input type="password" name="password2" class="form-item" required />
+
+        <button class="btn btn-submit" type="submit">Registrar</button>
+
+            
+        <p class="error">{{ error }}</p>
+        <p class="jserror"></p>
+
+    </form>
+    <div class="item"></div>
+</main>
+<script>
+    var select = document.querySelector.bind(document);
+    var form = select('.form');
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        if(form.password.value != form.password2.value){
+            select('.jserror').textContent = 'Senhas não batem!';
+        }else{
+            form.submit();
+        }
+    })
+</script>
+{% endblock content %}

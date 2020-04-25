@@ -14,7 +14,7 @@ class Register(View):
         return render(request, self.template_name)
     
     def post(self, request):
-        form = {key:value for key, value in request.POST.items()}
+        form = {key:value for key, value in request.POST.items() if key not in ['password2', 'csrfmiddlewaretoken']}
         user = User.objects.create_user(**form)
         profile = models.Profile(user=user).save()
         if user is not None:
@@ -26,13 +26,13 @@ class Register(View):
             })
             
 class Access(View):
-    template_name = 'login.html'
+    template_name = 'access.html'
 
     def get(self, request):
         return render(request, self.template_name)
     
     def post(self, request):
-        form = {key:value for key,value in request.POST.items()}
+        form = {key:value for key,value in request.POST.items() if key not in ['csrfmiddlewaretoken']}
         user = authenticate(request, **form)
         if user is not None:
             return redirect('home')
@@ -52,14 +52,14 @@ class ListItems(View, LoginRequiredMixin):
     template_name = 'list-items.html'
     
     @property
-    def context(request: HttpRequest) -> dict:
+    def context(self, request: HttpRequest) -> dict:
         return dict(items=models.Profile.objects.get(user=request.user).items)
     
     def get(self, request):
         return render(request, self.template_name, self.context)
     
     def post(self, request):
-        form = {key:value for key, value in request.POST.items()}        
+        form = {key:value for key, value in request.POST.items() if key not in ['csrfmiddlewaretoken']}        
         context = dict(items=models.Profile.objects.get(user=request.user).items)
         profile = models.Profile.get(user=request.user)
         try:
@@ -76,3 +76,8 @@ class ListItems(View, LoginRequiredMixin):
                 return render(request, self.template_name, context)
         finally:
             return render(request, self.template_name, self.context)
+        
+        
+def logout_view(request):
+    logout(request)
+    return redirect('access')
