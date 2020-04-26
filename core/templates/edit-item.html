@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main hbox">
+    <div class="item"></div>
+    <form method="POST" class="form vbox">{% csrf_token %}
+        <span class="span-item">{{ item.item.name }}</span>
+        <span class="span-item">{{ item.item.description }}</span>
+        <div class="hbox" id="up-down-box">
+            <input type="number" name="amount" id="up-down" class="form-item" value="{{ item.amount }}">
+            <div class="vbox"><i id="plus" class="fas fa-plus"></i><i id="minus" class="fas fa-minus"></i></div>
+        </div>
+
+        <button type="submit" class="btn btn-submit">Salvar</button>
+    </form>
+    <div class="item"></div>
+</main>
+{% endblock content %}

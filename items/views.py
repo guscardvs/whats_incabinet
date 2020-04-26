@@ -19,7 +19,6 @@ class ListItems(View, LoginRequiredMixin):
         return dict(items=core_models.Profile.objects.get(user=request.user).item.all())
 
     def get(self, request):
-        print(self.context(request))
         return render(request, self.template_name, self.context(request))
 
     def post(self, request):
@@ -68,3 +67,23 @@ def remove_item(request, pk: str):
     profile.save()
     uitem.delete()
     return redirect('list_items')
+
+
+class EditItem(View, LoginRequiredMixin):
+
+    template_name = 'edit-item.html'
+
+    def item(self, request: HttpRequest, pk: str) -> core_models.UserItem:
+        return core_models.Profile.objects.get(user=request.user).item.get(pk=pk)
+
+    def get(self, request, pk):
+        context = {
+            'item': self.item(request, pk)
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, pk):
+        item = self.item(request, pk)
+        item.amount = request.POST['amount']
+        item.save()
+        return redirect('list_items')

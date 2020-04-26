@@ -19,6 +19,7 @@
                     <td>Descrição</td>
                     <td>Quantidade</td>
                     <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -27,7 +28,8 @@
                     <td>{{ item.item.name }}</td>
                     <td>{{ item.item.description }}</td>
                     <td>{{ item.amount }}</td>
-                    <td class="btn-table"><a href="{% url 'remove' item.pk %}">Remover</a></td>
+                    <td class="btn-table"><a href="{% url 'remove_item' item.pk %}">Remover</a></td>
+                    <td class="btn-table"><a href="{% url 'edit_item' item.pk %}">Editar</a></td>
                 </tr>
                 {% empty %}
                 <tr>
