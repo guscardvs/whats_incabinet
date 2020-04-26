@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<main class="main">
-    
+<main class="main hbox">
+    <div class="item vbox">
+        <a href="{% url 'list_items' %}" class="btn btn-light">Lista de Itens</a>
+        <a href="{% url 'create_item' %}" class="btn btn-light">Criar Item</a>
+    </div>
+    <div class="item"></div>
+    <div class="item"></div>
 </main>
 {% endblock content %}

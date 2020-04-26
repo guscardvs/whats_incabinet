@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="main hbox">
+    <div class="item"></div>
+    <form class="form" method="POST">{% csrf_token %}
+
+        <p class="title">Criar Item</p>
+
+        <input type="text" name="name" class="form-item" placeholder="Nome do Item" required>
+
+        <textarea name="description" class="form-item" placeholder="Descrição"></textarea>
+
+        <input type="number" name="amount" class="form-item" placeholder="Quantidade" />
+
+        <button type="submit" class="btn btn-submit">Criar</button>
+
+        <p class="jserror"></p>
+    </form>
+    <div class="item"></div>
+</main>
+<script>
+    itens = []
+    {% for item in global_items %}
+    itens.push("{{ item.name }}")
+    {% endfor %}
+
+    const form = document.querySelector('.form')
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!itens.includes(form.name.value)) {
+            form.submit();
+        } else {
+            document.querySelector('.jserror').textContent = 'Nome de Item já existe';
+        }
+    })
+
+</script>
+{% endblock content %}

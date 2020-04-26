@@ -95,13 +95,24 @@ body{
     text-align: center;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .span-item {
     width: 100%;
     outline: none;
     border-bottom: 2px solid rgb(30, 38, 57);
     padding: .5rem;
     font-size: 1rem;
-    color: rgba(2,119,189 ,1);
+    color: rgba(72,56,23 ,1);
     margin-bottom: .7rem;
 }
 
@@ -118,4 +129,40 @@ body{
 
 .developer{
     align-items: center;
+}
+
+.error, .jserror{
+    color: red;
+}
+
+.div-table {
+    max-height: 80vh;
+    width: 95vw;
+    overflow: scroll;
+    padding: .3rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.table {
+    border: 2px solid darkgray;
+    padding: 0;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table .thead {
+    border: 2px solid darkgray;
+    color: rgb(17, 107, 190);
+}
+
+.table td {
+    border: 1px solid rgba(211, 211, 211, 0.7);
+    margin: 0;
+    padding: .2rem;
+}
+
+.table .thead td {
+    font-size: 1rem;
 }

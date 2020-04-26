@@ -7,6 +7,7 @@
     transition: .25s;
     border-radius: 2px;
     border: none;
+    cursor: pointer;
 }
 
 .btn-light{
@@ -54,4 +55,14 @@
     box-shadow: inset 1px 1px #151515;
 }
 
+.btn-table {
+    background-color: rgba(211, 211, 211, 0.7);
+    transition: .25s;
+    cursor: pointer;
+}
 
+.btn-table:hover,
+.btn-table:active {
+    background-color: gray;
+    color: rgb(30, 38, 57)!important;
+}

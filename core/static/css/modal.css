@@ -1,0 +1,27 @@
+.modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.show{
+    display: flex !important;
+}
+
+.modal .form{
+    min-height: 40%;
+    padding: 3rem 1rem;
+    border: 3px solid rgb(222, 184, 135);
+}
+
+#close{
+    text-align: center;
+    width: 5rem;
+    align-self: flex-end;
+}

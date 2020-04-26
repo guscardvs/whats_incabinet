@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .main {
+        align-items: center;
+    }
+</style>
+<main class="main vbox">
+
+    <div class="btns">
+        <button class="btn btn-light" onclick="modalOpen('addItem')">Novo Item</button>
+        <a href="{% url 'create_item' %}" class="btn btn-light">Criar Item</a>
+    </div>
+    <div class="div-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Nome</td>
+                    <td>Descrição</td>
+                    <td>Quantidade</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.item.name }}</td>
+                    <td>{{ item.item.description }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td class="btn-table"><a href="{% url 'remove' item.pk %}">Remover</a></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">Você não tem nenhum item registrado,
+                        registre um agora!</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <p class="error">{{ error }}</p>
+    <div class="modal" id="addItem">
+        <div class="inner vbox">
+            <button class="btn btn-dark" id="close" onclick="modalClose('addItem')">Fechar</button>
+            <form method="POST" class="form vbox">{% csrf_token %}
+
+                <p class="title">Adicionar Item</p>
+                <select name="name" class="form-item">
+                    {% for item in global_items %}
+                    <option value="{{ item.name }}"> {{ item.name }} </option>
+                    {% empty %}
+                    <option value="off">Sem itens cadastrados. :( Crie um agora
+                        Mesmo</option>
+                    {% endfor %}
+                </select>
+
+                <input type="number" class="form-item" name="amount">
+
+                <button type="submit" class="btn btn-submit">Adicionar</button>
+            </form>
+        </div>
+    </div>
+</main>
+<script>
+    const add_item = document.querySelector('.form');
+    const btn = document.querySelector('.modal .form .btn')
+    if (add_item.name.value === 'off') {
+        btn.disabled = true
+    }
+</script>
+{% endblock content %}
