@@ -1,0 +1,4 @@
+﻿django
+black
+pylint
+pydantic[email]

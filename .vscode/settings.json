@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "env\\Scripts\\python.exe",
+    "python.formatting.provider": "black",
+    "python.analysis.extraPaths": [
+        ".\\in_cabinet_project"
+    ],
+    "python.autoComplete.extraPaths": [
+        ".\\in_cabinet_project"
+    ]
+}

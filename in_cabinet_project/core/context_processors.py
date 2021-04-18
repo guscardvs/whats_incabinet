@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 
-from core import models
+from items.models import Item
 
 
 def get_item(request: HttpRequest) -> dict:
-    return {'global_items': models.Item.objects.all()}
+    return {"global_items": Item.objects.all()}
