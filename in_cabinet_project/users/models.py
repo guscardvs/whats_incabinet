@@ -38,8 +38,7 @@ class ProfileManager(models.Manager):
             user = User.objects.create_user(**form.dict())
             if not user:
                 return None
-            profile = super().create(user=user)
-            return profile
+            return super().create(user=user)
 
 
 class Profile(models.Model):

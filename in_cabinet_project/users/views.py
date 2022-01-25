@@ -17,8 +17,7 @@ class Register(PydanticView):
 
     @decoratedview()
     def post(self, wrapper: RequestWrapper[RegisterDTO]):
-        profile = Profile.objects.create(wrapper.form())
-        if profile:
+        if profile := Profile.objects.create(wrapper.form()):
             login(wrapper.request, profile.user)
             return "home"
         else:
