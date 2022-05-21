@@ -1,10 +1,6 @@
-from django.urls import path
-
-from core import views
+from django.urls import path, include
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('register', views.Register.as_view(), name='register'),
-    path('access', views.Access.as_view(), name='access'),
-    path('logout', views.logout_view, name='logout'),
+    path('profile/', include('profiles.urls')),
+    path('user-item/', include('user_items.urls'))
 ]

@@ -32,12 +32,11 @@
     <div class="item"></div>
 </main>
 <script>
-    var select = document.querySelector.bind(document);
-    var form = select('.form');
+    var form = document.querySelector('.form');
     form.addEventListener('submit', event => {
         event.preventDefault();
         if(form.password.value != form.password2.value){
-            select('.jserror').textContent = 'Senhas não batem!';
+            document.querySelector('.jserror').textContent = 'Senhas não batem!';
         }else{
             form.submit();
         }

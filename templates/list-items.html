@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in items %}
+                {% for item in user_items %}
                 <tr>
                     <td>{{ item.item.name }}</td>
                     <td>{{ item.item.description }}</td>
@@ -48,7 +48,7 @@
 
                 <p class="title">Adicionar Item</p>
                 <select name="name" class="form-item">
-                    {% for item in global_items %}
+                    {% for item in items %}
                     <option value="{{ item.name }}"> {{ item.name }} </option>
                     {% empty %}
                     <option value="off">Sem itens cadastrados. :( Crie um agora
